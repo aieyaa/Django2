@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des dragons</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .dragon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .dragon-card {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+
+        .dragon-card img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1 style="text-align: center;">Liste des Dragons</h1>
+
+{% if dragons %}
+    <div class="dragon-grid">
+        {% for dragon in dragons %}
+            <div class="dragon-card">
+
+                {% if dragon.image %}
+                    <img src="{{ dragon.image.url }}" alt="{{ dragon.nom }}">
+                {% endif %}
+
+                <h2>{{ dragon.nom }}</h2>
+
+                <p><strong>Catégorie :</strong> {{ dragon.categorie.nom }}</p>
+
+                <p><strong>Couleurs :</strong>
+                    {% for couleur in dragon.couleurs.all %}
+                        {{ couleur.nom }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+
+                <p><strong>Taille :</strong> {{ dragon.taille }} m</p>
+                <p><strong>Âge :</strong> {{ dragon.age }} ans</p>
+
+                <p>{{ dragon.description }}</p>
+
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>Aucun dragon trouvé.</p>
+{% endif %}
+
+</body>
+</html>

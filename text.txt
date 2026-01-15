@@ -1,0 +1,26 @@
+venv
+git . .git ignore
+bdd de dragons
+- nom, couleur (liste NN), cat(liste 1N), taille, age, description
+
+
+
+pip install django
+pip install djangorestframework
+pip freeze > requirement.txt
+
+django-admin startproject config . 
+
+python manage.py migrate
+
+python manage.py createsuperuser
+- aieya
+elea.ya.pro@gmail.com
+note [...] 
+
+django-admin startapp api
+
+python manage.py makemigrations
+python manage.py migrate
+
+python manage.py runserver
