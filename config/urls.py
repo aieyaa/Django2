@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('dragons/', include('dragons.urls')),
     path('', home, name="home"),
-    path('api/', include('dragons.api.urls')),
+    # path('api/', include('dragons.api.urls')),
 ]
 
 if settings.DEBUG:

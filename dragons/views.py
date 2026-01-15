@@ -4,6 +4,8 @@ from dragons.serializers import DragonSerializer
 from .models import Dragon
 from django.http import HttpResponse
 from rest_framework import viewsets
+from rest_framework import filters as filter
+
 
 def liste_dragons(request):
     dragons = Dragon.objects.all()
@@ -17,3 +19,6 @@ def home(request):
 class DragonViewSet(viewsets.ModelViewSet):
     queryset = Dragon.objects.all()
     serializer_class = DragonSerializer
+    filter_backends = [filter.SearchFilter]
+    search_fields = ['name', 'description']
+    ordering_fields = ['name', 'age']
